@@ -1,0 +1,55 @@
+body {
+    margin: 0px;
+    background-color: lightgray;
+    font-family: sans-serif;
+}
+
+article {
+    padding: 30px;
+}
+
+#main {
+    width: 800px;
+    margin: auto;
+    background-color: white;
+}
+
+.header {
+    width: 800px;
+}
+
+table {
+    text-align: left;
+    width: 100%;
+}
+
+th {
+    font-weight: bold;
+    vertical-align: text-top;
+    width: 30%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.custom-cells td {
+    width: 25%;
+    text-align: center;
+    vertical-align: center;
+}
+
+.bottom-logo {
+    vertical-align: top;
+    transition: all .5s linear;
+}
+
+.bottom-logo:hover {
+    width: 150px;
+}
+
+.bottom-content {
+    display: block;
+    margin: 0 auto;
+    height: 200px;
+}
