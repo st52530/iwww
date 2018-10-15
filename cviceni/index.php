@@ -11,9 +11,9 @@
     <div id="header-web-title">Honzovo</div>
     <img id="header-logo" src="./images/logo.png">
     <nav id="nav">
-        <a href="#">Home</a>
-        <a href="#">Blog</a>
-        <a href="#">Contact me</a>
+        <a href="?page=home">Home</a>
+        <a href="?page=blog">Blog</a>
+        <a href="?page=contact">Contact me</a>
     </nav>
 </header>
 
@@ -25,6 +25,16 @@
 </section>
 
 <main>
+
+    <?php
+    $pageFile = "./page/" . $_GET["page"] . ".php";
+    if (file_exists($pageFile)) {
+        include $pageFile;
+    } else {
+        echo "default content";
+    }
+    ?>
+
     <div class="center-wrapper">
         <div>
             <h2>Who am I?</h2>
