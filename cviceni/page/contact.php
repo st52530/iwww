@@ -1,4 +1,5 @@
 <h1>Kontakt</h1>
+<h1>Kontakt</h1>
 <?php
 /**
  * Created by PhpStorm.
