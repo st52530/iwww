@@ -47,8 +47,8 @@
             <div class="flex-wrap">
                 <strong>Next customers:</strong>
                 <div>
-                    <img src="./images/logo.png" width="50px" height="50px">
-                    <img src="./images/logo.png" width="50px" height="50px">
+                    <img src="./images/price.png" width="50px" height="50px">
+                    <img src="./images/price.png" width="50px" height="50px">
                 </div>
             </div>
 
