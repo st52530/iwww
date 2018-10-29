@@ -20,7 +20,13 @@ try {
     echo "<table>";
     echo "<tr><th>ID</th><th>e-mail</th><th>username</th><th>update</th><th>delete</th></tr>";
     foreach ($users as $user) {
-        echo "<tr><td>".$user['id']."</td><td>".$user['email']."</td><td>".$user['username']."</td><td><a href='user.php?action=update&id=" . $user['id'] . "'>update</a></td><td><a href='user.php?action=delete&id=" . $user['id'] . "'>delete</a></td></tr>";
+        echo "<tr>
+<td>" . $user['id'] . "</td>
+<td>" . $user['email'] . "</td>
+<td>" . $user['username'] . "</td>
+<td><a href='user.php?action=update&id=" . $user['id'] . "'>update</a></td>
+<td><a href='user.php?action=delete&id=" . $user['id'] . "'>delete</a></td>
+</tr>";
     }
     echo "</table>";
 } catch (PDOException $e) {
