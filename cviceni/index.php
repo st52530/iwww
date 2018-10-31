@@ -14,7 +14,7 @@ include "config.php";
 include "./page/header.php";
 
 
-$pageFile = "./page/" . $_GET["page"] . ".php";
+$pageFile = "./com/" . $_GET["page"] . ".php";
 if (!file_exists($pageFile)) {
     $pageFile = './page/home.php';
 }
