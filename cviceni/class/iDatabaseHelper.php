@@ -10,5 +10,9 @@ interface iDatabaseHelper
 {
     function connect();
 
-    function select($sql, $bindParams);
+    function execute($sql, $bindParams);
+
+    function fetch($sql, $bindParams);
+
+    function fetchAll($sql, $bindParams);
 }

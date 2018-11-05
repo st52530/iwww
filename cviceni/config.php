@@ -14,3 +14,7 @@ define('DB_NAME', 'iwww');
 define('BASE_URL', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 define('CURRENT_URL', $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING']);
+
+require_once "./class/iDatabaseHelper.php";
+require_once "./class/DatabaseHelper.php";
+$database = new DatabaseHelper();

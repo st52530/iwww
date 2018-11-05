@@ -14,30 +14,19 @@ if (isset($_POST['login'])) {
     }
 
     if (empty($messages)) {
-        try {
-            $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $user = $database->fetch("SELECT id, username, email, password FROM user WHERE email=:email", array(
+            ":email" => $_POST['email']
+        ));
 
-            // prepare sql and bind parameters
-            $statement = $conn->prepare("SELECT id, username, email, password FROM user WHERE email=:email");
-            $statement->bindParam(':email', $_POST['email']);
-            $statement->execute();
-
-            $user = $statement->fetch();
-
-            // TODO: Add hashing.
-            if ($user != null && $user['password'] == $_POST['password']) {
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['email'] = $user['email'];
-                header('Location: ' . BASE_URL);
-                die();
-            } else {
-                echo "Wrong username/password combination.";
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+        // TODO: Add hashing.
+        if ($user != null && $user['password'] == $_POST['password']) {
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            header('Location: ' . BASE_URL);
+            die();
+        } else {
+            echo "Wrong username/password combination.";
         }
     } else {
         foreach ($messages as $message) {

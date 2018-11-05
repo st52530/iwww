@@ -8,6 +8,9 @@
 
 class DatabaseHelper implements iDatabaseHelper
 {
+
+    public $connection = null;
+
     public function __construct()
     {
         $this->connect();
@@ -15,12 +18,40 @@ class DatabaseHelper implements iDatabaseHelper
 
     function connect()
     {
-        // TODO: Implement connect() method.
+        $this->$connection = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
+        // set the PDO error mode to exception
+        $this->$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    function select($sql, $bindParams)
+    function execute($sql, $bindParams)
     {
-        // TODO: Implement select() method.
+        // prepare sql and bind parameters
+        $statement = $this->$connection->prepare($sql);
+        foreach ($bindParams as $key => $value) {
+            $statement->bindParam($key, $value);
+        }
+        $statement->execute();
     }
+
+    function fetch($sql, $bindParams)
+    {
+        $statement = $this->$connection->prepare($sql);
+        foreach ($bindParams as $key => $value) {
+            $statement->bindParam($key, $value);
+        }
+        $statement->execute();
+        return $statement->fetch();
+    }
+
+    function fetchAll($sql, $bindParams)
+    {
+        $statement = $this->$connection->prepare($sql);
+        foreach ($bindParams as $key => $value) {
+            $statement->bindParam($key, $value);
+        }
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
 
 }

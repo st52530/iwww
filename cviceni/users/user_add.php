@@ -14,21 +14,12 @@ if (isset($_POST['add_user'])) {
     }
 
     if (empty($feedback)) {
-        try {
-            $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // prepare sql and bind parameters
-            $statement = $conn->prepare("INSERT INTO user (username, password, email, description, created) VALUES (:username,:password,:email,:description, NOW())");
-            $statement->bindParam(':username', $_POST['username']);
-            $statement->bindParam(':password', $_POST['password']);
-            $statement->bindParam(':email', $_POST['email']);
-            $statement->bindParam(':description', $_POST['description']);
-            $statement->execute();
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
+        $database->execute("INSERT INTO user (username, password, email, description, created) VALUES (:username,:password,:email,:description, NOW())", array(
+            ":username" => $_POST['username'],
+            ":password" => $_POST['password'],
+            ":email" => $_POST['email'],
+            ":description" => $_POST['description']
+        ));
     } else {
         foreach ($feedback as $f) {
             echo "$f<br>";
@@ -37,7 +28,7 @@ if (isset($_POST['add_user'])) {
 }
 ?>
 
-<form action="user.php?action=new" method="post">
+<form action="<?= CURRENT_URL; ?>" method="post">
     <input type="email" name="email" placeholder="Your email"> <br>
     <input type="text" name="username" placeholder="Your username"> <br>
     <input type="password" name="password" placeholder="Password"> <br>

@@ -9,7 +9,7 @@
         if ($isLogged) {
 
             ?>
-            <a href="<?= BASE_URL . "users/user.php?page=users" ?>">Users</a>
+            <a href="<?= BASE_URL . "?page=users" ?>">Users</a>
             <a href="<?= BASE_URL . "?page=logout" ?>">Logout</a>
             <?php
         } else {

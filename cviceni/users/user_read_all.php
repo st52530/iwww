@@ -24,8 +24,8 @@ try {
 <td>" . $user['id'] . "</td>
 <td>" . $user['email'] . "</td>
 <td>" . $user['username'] . "</td>
-<td><a href='user.php?action=update&id=" . $user['id'] . "'>update</a></td>
-<td><a href='user.php?action=delete&id=" . $user['id'] . "'>delete</a></td>
+<td><a href='" .BASE_URL . "?page=users&action=update&id=" . $user['id'] . "'>update</a></td>
+<td><a href='" .BASE_URL . "?page=users&action=delete&id=" . $user['id'] . "'>delete</a></td>
 </tr>";
     }
     echo "</table>";

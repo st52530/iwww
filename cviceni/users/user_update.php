@@ -19,22 +19,13 @@ if (!empty($_GET['id'])) {
         }
 
         if (empty($feedback)) {
-            try {
-                $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
-                // set the PDO error mode to exception
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                // prepare sql and bind parameters
-                $statement = $conn->prepare("UPDATE user SET username = :username, password = :password, email = :email, description = :description WHERE id = :id");
-                $statement->bindParam(':username', $_POST['username']);
-                $statement->bindParam(':password', $_POST['password']);
-                $statement->bindParam(':email', $_POST['email']);
-                $statement->bindParam(':description', $_POST['description']);
-                $statement->bindParam(":id", $_GET['id']);
-                $statement->execute();
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
+            $database->execute("UPDATE user SET username = :username, password = :password, email = :email, description = :description WHERE id = :id", array(
+                ":username" => $_POST['username'],
+                ":password" => $_POST['password'],
+                ":email" => $_POST['email'],
+                ":description" => $_POST['description'],
+                ":id" => $_GET['id']
+            ));
         } else {
             foreach ($feedback as $f) {
                 echo "$f<br>";
@@ -42,23 +33,9 @@ if (!empty($_GET['id'])) {
         }
     }
 
-    $user = null;
-    try {
-        $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // prepare sql and bind parameters
-        $statement = $conn->prepare("SELECT * FROM user WHERE id = :id");
-        $statement->bindParam(":id", $_GET['id']);
-        $statement->execute();
-
-        $user = $statement->fetch();
-
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-
+    $user = $database->fetch("SELECT * FROM user WHERE id = :id", array(
+        ":id" => $_GET['id']
+    ));
     if ($user != null) {
 
         ?>
