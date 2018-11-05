@@ -1,4 +1,10 @@
 <?php
+ob_start();
+session_start();
+$isLogged = isset($_SESSION['id']);
+if (!$isLogged) {
+    header("Location: " . '/iwww/cviceni/');
+}
 include "../config.php";
 ?>
 <!DOCTYPE html>

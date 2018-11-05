@@ -1,4 +1,7 @@
 <?php
+ob_start();
+session_start();
+$isLogged = isset($_SESSION['id']);
 include "config.php";
 ?>
 <!DOCTYPE html>
@@ -14,7 +17,7 @@ include "config.php";
 include "./page/header.php";
 
 
-$pageFile = "./com/" . $_GET["page"] . ".php";
+$pageFile = "./page/" . $_GET["page"] . ".php";
 if (!file_exists($pageFile)) {
     $pageFile = './page/home.php';
 }

@@ -8,7 +8,9 @@
                     <li><a href="#">References</a></li>
                     <li><a href="#">Contact me</a></li>
                     <li><a href="#">Authors</a></li>
-                    <li><a href="#">Login</a></li>
+                    <?php if (!$isLogged) { ?>
+                        <li><a href="<?= BASE_URL . "?page=login" ?>">Login</a></li>
+                    <?php } ?>
                 </ul>
             </section>
 
