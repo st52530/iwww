@@ -4,34 +4,12 @@
 
 // input
 
-$messages = array();
 if (isset($_POST['login'])) {
-    if (empty($_POST['email'])) {
-        array_push($messages, "E-mail cannot be empty!");
-    }
-    if (empty($_POST['password'])) {
-        array_push($messages, "Password cannot be empty!");
-    }
-
-    if (empty($messages)) {
-        $user = $database->fetch("SELECT id, username, email, password FROM user WHERE email=:email", array(
-            ":email" => $_POST['email']
-        ));
-
-        // TODO: Add hashing.
-        if ($user != null && $user['password'] == $_POST['password']) {
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email'];
-            header('Location: ' . BASE_URL);
-            die();
-        } else {
-            echo "Wrong username/password combination.";
-        }
+    if (Authentication::getInstance()->login($_POST['email'], $_POST['password'])) {
+        header('Location: ' . BASE_URL);
+        die();
     } else {
-        foreach ($messages as $message) {
-            echo "$message<br>";
-        }
+        echo "Wrong username/password combination.";
     }
 }
 

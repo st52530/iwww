@@ -5,7 +5,7 @@
  * Date: 05/11/2018
  * Time: 08:52
  */
-session_destroy();
+Authentication::getInstance()->logout();
 
 header('Location: ' . BASE_URL);
 die();

@@ -1,8 +1,16 @@
 <?php
 ob_start();
 session_start();
-$isLogged = isset($_SESSION['id']);
 include "config.php";
+function __autoload($className) {
+    if (file_exists("./class/$className.php")) {
+        require_once "./class/$className.php";
+        return true;
+    }
+    return false;
+}
+
+$database = new DatabaseHelper();
 ?>
 <!DOCTYPE html>
 <html lang="en">

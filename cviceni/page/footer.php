@@ -8,7 +8,7 @@
                     <li><a href="#">References</a></li>
                     <li><a href="#">Contact me</a></li>
                     <li><a href="#">Authors</a></li>
-                    <?php if (!$isLogged) { ?>
+                    <?php if (!Authentication::getInstance()->hasIdentity()) { ?>
                         <li><a href="<?= BASE_URL . "?page=login" ?>">Login</a></li>
                     <?php } ?>
                 </ul>
