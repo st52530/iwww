@@ -6,6 +6,7 @@
         <a href="<?= BASE_URL . "?page=blog" ?>">Blog</a>
         <a href="<?= BASE_URL . "?page=contact" ?>">Contact me</a>
         <?php if (Authentication::getInstance()->hasIdentity()): ?>
+            <a href="<?= BASE_URL . "?page=trumbowyg" ?>">Trumbowyg</a>
             <a href="<?= BASE_URL . "?page=users" ?>">Users</a>
             <a href="<?= BASE_URL . "?page=logout" ?>">Logout</a>
         <?php else: ?>
